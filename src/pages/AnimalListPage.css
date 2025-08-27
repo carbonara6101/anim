@@ -1,0 +1,355 @@
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 배경에 그라데이션 적용 */
+.animal-list-page {
+  background: linear-gradient(135deg, #fff5f5 0%, #fff9e6 50%, #f0fff0 100%);
+  background-attachment: fixed;
+  padding: 40px 20px;
+  min-height: 100vh;
+  overflow-y: auto;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 40px 0;
+  padding: 20px 0;
+  text-align: center;
+  color: #5d4037;
+  position: relative;
+  letter-spacing: -0.5px;
+}
+
+.page-title::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #ffab91, #ff8a65);
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.animal-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeUp 0.6s ease-out both;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.animal-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 152, 0, 0.2);
+  border-color: rgba(255, 167, 38, 0.3);
+}
+
+.animal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffab91, #ff8a65);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.animal-card:hover::before {
+  opacity: 1;
+}
+
+.animal-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.animal-card:hover .animal-img {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.animal-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 12px 0 6px;
+  color: #5d4037;
+  position: relative;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.animal-name::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: linear-gradient(90deg, #ffab91, #ff8a65);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.animal-card:hover .animal-name::after {
+  transform: scaleX(1);
+}
+
+.animal-name.male {
+  color: #1976d2;
+}
+
+.animal-name.female {
+  color: #c2185b;
+}
+
+.animal-age,
+.animal-date,
+.animal-shelter,
+.animal-location,
+.animal-description {
+  font-size: 0.9rem;
+  color: #6d4c41;
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.animal-description {
+  font-style: italic;
+  margin: 10px 0 15px;
+  color: #8d6e63;
+  font-size: 0.85rem;
+}
+
+.adopt-button {
+  margin-top: 12px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #ffab91 0%, #ff8a65 100%);
+  border: none;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(255, 138, 101, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.adopt-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff8a65 0%, #ff7043 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.adopt-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 138, 101, 0.4);
+}
+
+.adopt-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(255, 138, 101, 0.3);
+}
+
+.adopt-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+  color: #5d4037;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.back-button:hover {
+  background: #fff;
+  color: #ff7043;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  border-color: rgba(255, 112, 67, 0.3);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+.animal-list-page {
+  padding: 20px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3열로 나누기 */
+  gap: 20px;
+}
+
+.animal-card {
+  background-color: var(--surface);
+  padding: 15px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.animal-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.animal-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.animal-age, .animal-location, .animal-shelter, .animal-description {
+  font-size: 14px;
+  margin-top: 5px;
+  color: #555;
+}
+
+.adopt-button {
+  background-color: var(--brand-coral);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  margin-top: 10px
+}
+
+/* AnimalListPage.css */
+
+/* 동물 카드 */
+.animal-card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 15px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease;
+}
+
+.animal-card:hover {
+  transform: scale(1.05);
+}
+
+.animal-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 페이지 제목 */
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0 30px;
+  gap: 12px;
+  padding: 0 20px;
+}
+
+.pagination button {
+  background: white;
+  border: 1px solid #e0e0e0;
+  color: #5d4037;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.pagination button:hover {
+  background-color: #e6e6e6;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  background-color: #dcdcdc;
+}
+
+.pagination span {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
